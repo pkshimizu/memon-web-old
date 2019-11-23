@@ -1,14 +1,14 @@
 import React from "react";
 
 import { storiesOf } from "@storybook/react";
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { withKnobs } from "@storybook/addon-knobs";
 
 import List from './index'
 import ListItem from "./item";
 import {Folder, Mail, Note} from "@material-ui/icons";
 
 
-const components = storiesOf("Units", module);
+const components = storiesOf("Atoms", module);
 components
   .addDecorator(withKnobs)
   .add("List", () => (

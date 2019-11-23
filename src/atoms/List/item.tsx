@@ -9,11 +9,11 @@ type ListItemProps = {
 }
 
 const ListItem: React.FC<ListItemProps> = props => {
-
+  const {text, icon} = props;
   return (
     <MUListItem button>
-      <MUListItemIcon>{props.icon}</MUListItemIcon>
-      <MUListItemText primary={props.text}/>
+      <MUListItemIcon>{icon}</MUListItemIcon>
+      <MUListItemText primary={text}/>
     </MUListItem>
   )
 };

@@ -8,13 +8,14 @@ type ListProps = {
 }
 
 const List: React.FC<ListProps> = props => {
+  const {children, header} = props;
   return (
     <MUList
       subheader = {
-        <MUListSubheader>{props.header}</MUListSubheader>
+        <MUListSubheader>{header}</MUListSubheader>
       }
     >
-      {props.children}
+      {children}
     </MUList>
   )
 };
