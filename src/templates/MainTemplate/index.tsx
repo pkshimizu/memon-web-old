@@ -1,50 +1,48 @@
-import React, {ReactNode} from 'react'
-import {createStyles, Grid, makeStyles, Theme} from "@material-ui/core"
+import React, { ReactNode } from 'react';
+import { createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
 
-type MainTemplateProps = {
-  header: ReactNode,
-  sidebar: ReactNode,
-  body: ReactNode
+interface MainTemplateProps {
+  header: ReactNode;
+  sidebar: ReactNode;
+  body: ReactNode;
 }
 
-const useStyles = makeStyles( (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1
+      flexGrow: 1,
     },
     left: {
-      padding: "8px 16px",
-      minHeight: "100vh",
-      maxWidth: "256px"
+      padding: '8px 16px',
+      minHeight: '100vh',
+      maxWidth: '256px',
     },
     right: {
-      height: "100vh",
-      minWidth: "calc(100% - 256px)"
+      height: '100vh',
+      minWidth: 'calc(100% - 256px)',
     },
     rightItems: {
-      height: "100%"
+      height: '100%',
     },
     main: {
-      minHeight: "calc(100% - 64px)"
-    }
+      minHeight: 'calc(100% - 64px)',
+    },
   })
 );
 
 const MainTemplate: React.FC<MainTemplateProps> = props => {
-  const {header, sidebar, body} = props;
+  const { header, sidebar, body } = props;
   const styles = useStyles();
   return (
     <div className={styles.root}>
-      <Grid container direction="row" alignItems={"stretch"}>
-        <Grid item className={styles.left}>
+      <Grid container={true} direction={'row'} alignItems={'stretch'}>
+        <Grid item={true} className={styles.left}>
           {sidebar}
         </Grid>
-        <Grid item className={styles.right}>
-          <Grid container direction="column" alignItems={"stretch"} className={styles.rightItems}>
+        <Grid item={true} className={styles.right}>
+          <Grid container={true} direction={'column'} alignItems={'stretch'} className={styles.rightItems}>
             {header}
-            <div className={styles.main}>
-              {body}
-            </div>
+            <div className={styles.main}>{body}</div>
           </Grid>
         </Grid>
       </Grid>
@@ -52,4 +50,4 @@ const MainTemplate: React.FC<MainTemplateProps> = props => {
   );
 };
 
-export default MainTemplate
+export default MainTemplate;

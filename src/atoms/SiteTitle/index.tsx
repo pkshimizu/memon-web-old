@@ -1,15 +1,10 @@
-import React from 'react'
-import {Typography} from "@material-ui/core";
+import React from 'react';
+import { Typography } from '@material-ui/core';
 
-type SiteTitleProps = {
-}
+interface SiteTitleProps {}
 
 const SiteTitle: React.FC<SiteTitleProps> = props => {
-  return (
-    <Typography variant="h6">
-      memon
-    </Typography>
-  )
+  return <Typography variant={'h6'}>memon</Typography>;
 };
 
-export default SiteTitle
+export default SiteTitle;

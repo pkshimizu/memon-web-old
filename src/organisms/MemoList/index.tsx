@@ -1,40 +1,40 @@
-import React from 'react'
-import {Grid} from "@material-ui/core";
-import SearchForm from "../../molecules/SearchForm";
-import List from "../../atoms/List";
-import ListItem from "../../atoms/List/item";
-import {Folder, Note} from "@material-ui/icons";
+import React from 'react';
+import { Grid } from '@material-ui/core';
+import SearchForm from '../../molecules/SearchForm';
+import List from '../../atoms/List';
+import ListItem from '../../atoms/List/item';
+import { Folder, Note } from '@material-ui/icons';
 
-type Folder = {
-  name: string
+interface Folder {
+  name: string;
 }
 
-type Memo = {
-  title: string
+interface Memo {
+  title: string;
 }
 
-type MemoListProps = {
-  folders: Folder[],
-  memos: Memo[]
+interface MemoListProps {
+  folders: Folder[];
+  memos: Memo[];
 }
 
 const MemoList: React.FC<MemoListProps> = props => {
-  const {folders, memos} = props;
+  const { folders, memos } = props;
   return (
-    <Grid container direction="column" alignItems={"stretch"}>
-      <SearchForm/>
+    <Grid container={true} direction={'column'} alignItems={'stretch'}>
+      <SearchForm />
       <List header="Folders">
-        { folders.map( folder => (
-          <ListItem icon={<Folder/>} text={folder.name} />
+        {folders.map((folder, index) => (
+          <ListItem key={`folder_${index}`} icon={<Folder />} text={folder.name} />
         ))}
       </List>
       <List header="Memos">
-        { memos.map( memo => (
-          <ListItem icon={<Note/>} text={memo.title} />
+        {memos.map((memo, index) => (
+          <ListItem key={`memo_${index}`} icon={<Note />} text={memo.title} />
         ))}
       </List>
     </Grid>
-  )
+  );
 };
 
-export default MemoList
+export default MemoList;

@@ -1,12 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-type SiteLogoProps = {
-}
+interface SiteLogoProps {}
 
 const SiteLogo: React.FC<SiteLogoProps> = props => {
-  return (
-    <img src="/img/siteLogo.png" width="48px"/>
-  )
+  return <img src={'/img/siteLogo.png'} width={'48px'} />;
 };
 
-export default SiteLogo
+export default SiteLogo;

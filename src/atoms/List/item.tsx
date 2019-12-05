@@ -1,23 +1,23 @@
-import React, {ReactElement} from 'react'
-import MUListItem from '@material-ui/core/ListItem'
-import MUListItemText from '@material-ui/core/ListItemText'
-import MUListItemIcon from '@material-ui/core/ListItemIcon'
+import React, { ReactElement } from 'react';
+import {
+  ListItem as MUListItem,
+  ListItemText as MUListItemText,
+  ListItemIcon as MUListItemIcon,
+} from '@material-ui/core';
 
-type ListItemProps = {
-  text: string,
-  icon: ReactElement
+interface ListItemProps {
+  text: string;
+  icon: ReactElement;
 }
 
 const ListItem: React.FC<ListItemProps> = props => {
-  const {text, icon} = props;
+  const { text, icon } = props;
   return (
-    <MUListItem button>
+    <MUListItem button={true}>
       <MUListItemIcon>{icon}</MUListItemIcon>
-      <MUListItemText primary={text}/>
+      <MUListItemText primary={text} />
     </MUListItem>
-  )
+  );
 };
 
-export default ListItem
-
-
+export default ListItem;

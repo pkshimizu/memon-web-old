@@ -10,10 +10,16 @@
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.4",
     "ace-builds": "^1.4.7",
+    "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-ace": "^8.0.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.2.0",
+    "tslint": "^5.20.1",
+    "tslint-config-airbnb": "^5.11.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^4.1.0",
     "typescript": "3.7.2"
   },
   "scripts": {
@@ -22,10 +28,19 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "tslint:prettier-check": "tslint-config-prettier-check ./tslint.json",
+    "tslint": "tslint --fix --force --format stylish --project ./tsconfig.json ./src/**/*.{ts,tsx}",
+    "prettier": "prettier --write ./src/**/*.{ts,tsx}"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "printWidth": 120,
+    "trailingComma": "es5"
   },
   "browserslist": {
     "production": [
