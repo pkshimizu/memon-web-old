@@ -1,7 +1,8 @@
 import React from 'react'
 import TextField from "../../atoms/TextField";
-import Button from "../../atoms/Button";
 import {Grid} from "@material-ui/core";
+import {Search} from "@material-ui/icons";
+import IconButton from "../../atoms/IconButton";
 
 type SearchFormProps = {
 }
@@ -13,7 +14,7 @@ const SearchForm: React.FC<SearchFormProps> = props => {
         <TextField label="Input search keyword"/>
       </Grid>
       <Grid item>
-        <Button>Search</Button>
+        <IconButton icon={<Search/>}/>
       </Grid>
     </Grid>
   )

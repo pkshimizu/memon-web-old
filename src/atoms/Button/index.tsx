@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 import MUButton from '@material-ui/core/Button'
 
 type ButtonProps = {
-  children: string;
+  children: ReactNode;
   color?: 'inherit' | 'primary' | 'secondary' | 'default';
 }
 
