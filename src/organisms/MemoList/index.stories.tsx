@@ -9,7 +9,6 @@ components
   .addDecorator(withKnobs)
   .add('MemoList', () => (
     <MemoList
-      folders={[{ name: 'XXXプロジェクト' }, { name: 'YYYプロジェクト' }]}
-      memos={[{ title: '12/04 議事録' }, { title: '12/03 議事録' }]}
+      memos={[{ title: '12/04 議事録', content: '' }, { title: '12/03 議事録', content: '' }]}
     />
   ));

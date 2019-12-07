@@ -10,7 +10,7 @@ const MainPage: React.FC<MainPageProps> = props => {
   return (
     <MainTemplate
       header={<SiteHeader />}
-      sidebar={<MemoList folders={[]} memos={[]} />}
+      sidebar={<MemoList memos={[]} />}
       body={<MarkdownEditor keyBinding={'vim'} />}
     />
   );
