@@ -9,7 +9,7 @@ import Button from '../../atoms/Button';
 
 interface MemoListProps {
   memos: Memo[];
-  onClickAddMemo?: () => void;
+  onClickAddMemo: () => void;
 }
 
 const MemoList: React.FC<MemoListProps> = props => {

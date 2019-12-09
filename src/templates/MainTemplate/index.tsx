@@ -15,11 +15,13 @@ const useStyles = makeStyles((theme: Theme) =>
     left: {
       padding: '8px 16px',
       minHeight: '100vh',
-      maxWidth: '256px',
+      maxHeight: '100vh',
+      maxWidth: '280px',
+      overflowY: 'scroll',
     },
     right: {
       height: '100vh',
-      minWidth: 'calc(100% - 256px)',
+      minWidth: 'calc(100% - 280px)',
     },
     rightItems: {
       height: '100%',
