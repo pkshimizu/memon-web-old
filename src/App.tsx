@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import MainPage from './pages/MainPage';
+import MainPageContainer from './pages/MainPage/container';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <MainPage />
+      <MainPageContainer />
     </div>
   );
 };

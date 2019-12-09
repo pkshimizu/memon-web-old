@@ -1,35 +1,34 @@
-import {CREATE_MEMO, DELETE_MEMO, LOAD_MEMOS, Memo, MemoActionTypes, SAVE_MEMO, SELECT_MEMO} from "./types";
+import { CREATE_MEMO, DELETE_MEMO, LOAD_MEMOS, Memo, MemoActionTypes, SAVE_MEMO, SELECT_MEMO } from './types';
 
 export function loadMemos(): MemoActionTypes {
   return {
-    type: LOAD_MEMOS
-  }
+    type: LOAD_MEMOS,
+  };
 }
 
-export function createMemos(): MemoActionTypes {
+export function createMemo(): MemoActionTypes {
   return {
-    type: CREATE_MEMO
-  }
+    type: CREATE_MEMO,
+  };
 }
 
 export function saveMemos(memo: Memo): MemoActionTypes {
   return {
     type: SAVE_MEMO,
-    payload: memo
-  }
+    payload: memo,
+  };
 }
 
 export function deleteMemos(memo: Memo): MemoActionTypes {
   return {
     type: DELETE_MEMO,
-    payload: memo
-  }
+    payload: memo,
+  };
 }
 
 export function selectMemos(memo: Memo): MemoActionTypes {
   return {
     type: SELECT_MEMO,
-    payload: memo
-  }
+    payload: memo,
+  };
 }
-

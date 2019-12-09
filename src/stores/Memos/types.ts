@@ -1,11 +1,14 @@
 export interface Memo {
-  title: string,
-  content: string
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface MemosState {
-  memos: Memo[]
-  selectedMemo: Memo | undefined
+  memos: Memo[];
+  selectedMemo: Memo | undefined;
 }
 
 export const LOAD_MEMOS = 'LOAD_MEMOS';
@@ -15,27 +18,26 @@ export const DELETE_MEMO = 'DELETE_MEMO';
 export const SELECT_MEMO = 'SELECT_MEMO';
 
 interface LoadMemosAction {
-  type: typeof LOAD_MEMOS
+  type: typeof LOAD_MEMOS;
 }
 
 interface CreateMemoAction {
-  type: typeof CREATE_MEMO,
+  type: typeof CREATE_MEMO;
 }
 
 interface SaveMemoAction {
-  type: typeof SAVE_MEMO,
-  payload: Memo
+  type: typeof SAVE_MEMO;
+  payload: Memo;
 }
 
 interface DeleteMemoAction {
-  type: typeof DELETE_MEMO,
-  payload: Memo
+  type: typeof DELETE_MEMO;
+  payload: Memo;
 }
 
 interface SelectMemoAction {
-  type: typeof SELECT_MEMO,
-  payload: Memo
+  type: typeof SELECT_MEMO;
+  payload: Memo;
 }
 
-
-export type MemoActionTypes = LoadMemosAction | CreateMemoAction | SaveMemoAction | DeleteMemoAction | SelectMemoAction
+export type MemoActionTypes = LoadMemosAction | CreateMemoAction | SaveMemoAction | DeleteMemoAction | SelectMemoAction;
