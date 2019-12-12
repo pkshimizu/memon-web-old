@@ -3,6 +3,7 @@ import { AppBar, createStyles, makeStyles, Theme, Toolbar } from '@material-ui/c
 import Button from '../../atoms/Button';
 import SiteLogo from '../../atoms/SiteLogo';
 import SiteTitle from '../../atoms/SiteTitle';
+import SearchForm from '../../molecules/SearchForm';
 
 interface SiteHeaderProps {}
 
@@ -32,7 +33,8 @@ const SiteHeader: React.FC<SiteHeaderProps> = props => {
           <div className={styles.title}>
             <SiteTitle />
           </div>
-          <Button color={'inherit'}>Login</Button>
+          <SearchForm />
+          <Button>Login</Button>
         </Toolbar>
       </AppBar>
     </div>

@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react';
 import { Button as MUButton } from '@material-ui/core';
+import { Color } from '../../defines';
 
 interface ButtonProps {
   children: ReactNode;
-  color?: 'inherit' | 'primary' | 'secondary' | 'default';
+  color?: Color;
   onClick?: () => void;
 }
 

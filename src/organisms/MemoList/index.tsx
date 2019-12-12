@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import SearchForm from '../../molecules/SearchForm';
 import List from '../../atoms/List';
 import ListItem from '../../atoms/List/item';
 import { Note, Add } from '@material-ui/icons';
@@ -16,7 +15,6 @@ const MemoList: React.FC<MemoListProps> = props => {
   const { memos, onClickAddMemo } = props;
   return (
     <Grid container={true} direction={'column'} alignItems={'stretch'}>
-      <SearchForm />
       <Button onClick={onClickAddMemo}>
         <Add />
       </Button>

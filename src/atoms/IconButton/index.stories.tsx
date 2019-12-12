@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import IconButton from './index';
 import { Face } from '@material-ui/icons';
 

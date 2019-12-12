@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: '100vh',
       maxHeight: '100vh',
       maxWidth: '280px',
+      minWidth: '280px',
       overflowY: 'scroll',
     },
     right: {

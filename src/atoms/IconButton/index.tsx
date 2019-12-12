@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react';
 import { IconButton as MUIconButton } from '@material-ui/core';
+import { Color } from '../../defines';
 
 interface IconButtonProps {
   icon: ReactNode;
-  color?: 'inherit' | 'primary' | 'secondary' | 'default';
+  color?: Color;
 }
 
 const IconButton: React.FC<IconButtonProps> = props => {
