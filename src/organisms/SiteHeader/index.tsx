@@ -3,7 +3,7 @@ import { AppBar, createStyles, makeStyles, Theme, Toolbar } from '@material-ui/c
 import Button from '../../atoms/Button';
 import SiteLogo from '../../atoms/SiteLogo';
 import SiteTitle from '../../atoms/SiteTitle';
-import SearchForm from '../../molecules/SearchForm';
+import SearchBox from '../../molecules/SearchBox';
 
 interface SiteHeaderProps {}
 
@@ -33,7 +33,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = props => {
           <div className={styles.title}>
             <SiteTitle />
           </div>
-          <SearchForm />
+          <SearchBox />
           <Button>Login</Button>
         </Toolbar>
       </AppBar>

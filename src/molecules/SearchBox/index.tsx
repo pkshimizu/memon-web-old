@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const SearchForm: React.FC<SearchFormProps> = props => {
+const SearchBox: React.FC<SearchFormProps> = props => {
   const styles = useStyles();
   return (
     <Grid container={true} className={styles.root}>
@@ -46,4 +46,4 @@ const SearchForm: React.FC<SearchFormProps> = props => {
   );
 };
 
-export default SearchForm;
+export default SearchBox;
