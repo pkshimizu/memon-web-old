@@ -9,10 +9,28 @@ import {
   SELECT_MEMO,
 } from './types';
 import _ from 'lodash';
+import moment from 'moment';
+import { uuid } from 'uuidv4';
+
+function createMemo(): Memo {
+  return {
+    uuid: uuid(),
+    title: '',
+    content: '',
+    createdAt: moment().format('YYYY-MM-DDThh:mm:ss'),
+    updatedAt: moment().format('YYYY-MM-DDThh:mm:ss'),
+  };
+}
+
+const defaultMemo = createMemo();
 
 const initialState: MemosState = {
-  memos: [],
-  selectedMemo: undefined,
+  memos: [defaultMemo],
+  selectedMemo: defaultMemo,
+};
+
+const getTitle = (content: string) => {
+  return content.slice(0, content.indexOf('\n'));
 };
 
 export function memoReducer(state = initialState, action: MemoActionTypes): MemosState {
@@ -20,30 +38,34 @@ export function memoReducer(state = initialState, action: MemoActionTypes): Memo
     case LOAD_MEMOS:
       return state;
     case CREATE_MEMO:
+      const memo = createMemo();
       return {
         ...state,
-        memos: _.concat(state.memos, {
-          id: 0,
-          title: '',
-          content: '',
-          createdAt: '2019-12-09T12:34:56',
-          updatedAt: '2019-12-09T12:34:56',
-        }),
+        memos: [memo, ...state.memos],
+        selectedMemo: memo,
       };
     case SAVE_MEMO:
       return {
         ...state,
         memos: _.map(state.memos, (memo: Memo) => {
-          if (action.payload.id === memo.id) {
-            return action.payload;
+          if (action.payload.uuid === memo.uuid) {
+            return { ...memo, title: getTitle(action.payload.content), content: action.payload.content };
           }
           return memo;
         }),
+        selectedMemo: {
+          ...state.selectedMemo,
+          title: getTitle(action.payload.content),
+          content: action.payload.content,
+        },
       };
     case DELETE_MEMO:
-      return { ...state, memos: _.filter(state.memos, (memo: Memo) => action.payload.id !== memo.id) };
+      return { ...state, memos: _.filter(state.memos, (memo: Memo) => action.payload.uuid !== memo.uuid) };
     case SELECT_MEMO:
-      return { ...state, selectedMemo: action.payload };
+      return {
+        ...state,
+        selectedMemo: state.memos[_.findIndex(state.memos, { uuid: action.payload.uuid })]
+      };
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import { CREATE_MEMO, DELETE_MEMO, LOAD_MEMOS, Memo, MemoActionTypes, SAVE_MEMO, SELECT_MEMO } from './types';
+import { CREATE_MEMO, DELETE_MEMO, LOAD_MEMOS, MemoActionTypes, SAVE_MEMO, SELECT_MEMO } from './types';
 
 export function loadMemos(): MemoActionTypes {
   return {
@@ -12,23 +12,30 @@ export function createMemo(): MemoActionTypes {
   };
 }
 
-export function saveMemos(memo: Memo): MemoActionTypes {
+export function saveMemo(uuid: string, content: string): MemoActionTypes {
   return {
     type: SAVE_MEMO,
-    payload: memo,
+    payload: {
+      uuid: uuid,
+      content: content,
+    },
   };
 }
 
-export function deleteMemos(memo: Memo): MemoActionTypes {
+export function deleteMemos(uuid: string): MemoActionTypes {
   return {
     type: DELETE_MEMO,
-    payload: memo,
+    payload: {
+      uuid: uuid,
+    },
   };
 }
 
-export function selectMemos(memo: Memo): MemoActionTypes {
+export function selectMemo(uuid: string): MemoActionTypes {
   return {
     type: SELECT_MEMO,
-    payload: memo,
+    payload: {
+      uuid: uuid,
+    },
   };
 }

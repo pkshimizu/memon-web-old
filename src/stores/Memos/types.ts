@@ -1,5 +1,5 @@
 export interface Memo {
-  id: number;
+  uuid: string;
   title: string;
   content: string;
   createdAt: string;
@@ -8,7 +8,7 @@ export interface Memo {
 
 export interface MemosState {
   memos: Memo[];
-  selectedMemo: Memo | undefined;
+  selectedMemo: Memo;
 }
 
 export const LOAD_MEMOS = 'LOAD_MEMOS';
@@ -27,17 +27,24 @@ interface CreateMemoAction {
 
 interface SaveMemoAction {
   type: typeof SAVE_MEMO;
-  payload: Memo;
+  payload: {
+    uuid: string;
+    content: string;
+  };
 }
 
 interface DeleteMemoAction {
   type: typeof DELETE_MEMO;
-  payload: Memo;
+  payload: {
+    uuid: string;
+  };
 }
 
 interface SelectMemoAction {
   type: typeof SELECT_MEMO;
-  payload: Memo;
+  payload: {
+    uuid: string;
+  };
 }
 
 export type MemoActionTypes = LoadMemosAction | CreateMemoAction | SaveMemoAction | DeleteMemoAction | SelectMemoAction;

@@ -6,14 +6,17 @@ import 'ace-builds/src-noconflict/keybinding-vim';
 import 'ace-builds/src-noconflict/keybinding-emacs';
 
 interface MarkdownEditorProps {
+  content: string;
+  onChangeContent: (content: string) => void;
   keyBinding?: string;
 }
 
 const MarkdownEditor: React.FC<MarkdownEditorProps> = props => {
-  const { keyBinding } = props;
+  const { content, keyBinding, onChangeContent } = props;
   return (
     <AceEditor
-      placeholder={'Placeholder Text'}
+      value={content}
+      placeholder={''}
       mode={'markdown'}
       theme={'textmate'}
       keyboardHandler={keyBinding}
@@ -21,16 +24,13 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = props => {
       showPrintMargin={true}
       showGutter={true}
       highlightActiveLine={true}
-      value={''}
       width={'100%'}
       height={'100%'}
       setOptions={{
-        enableBasicAutocompletion: true,
-        enableLiveAutocompletion: true,
-        enableSnippets: false,
         showLineNumbers: true,
         tabSize: 2,
       }}
+      onChange={onChangeContent}
     />
   );
 };

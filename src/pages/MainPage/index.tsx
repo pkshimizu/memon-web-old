@@ -6,17 +6,27 @@ import MainTemplate from '../../templates/MainTemplate';
 import { Memo } from '../../stores/Memos/types';
 
 interface MainPageProps {
+  selectedMemo: Memo;
   memos: Memo[];
   onClickAddMemo: () => void;
+  onSelectMemo: (memo: Memo) => void;
+  onChangeMemoContent: (content: string) => void;
 }
 
 const MainPage: React.FC<MainPageProps> = props => {
-  const { memos, onClickAddMemo } = props;
+  const { selectedMemo, memos, onClickAddMemo, onSelectMemo, onChangeMemoContent } = props;
   return (
     <MainTemplate
       header={<SiteHeader />}
-      sidebar={<MemoList memos={memos} onClickAddMemo={onClickAddMemo} />}
-      body={<MarkdownEditor keyBinding={'vim'} />}
+      sidebar={
+        <MemoList
+          memos={memos}
+          selectedMemoUuid={selectedMemo.uuid}
+          onClickAddMemo={onClickAddMemo}
+          onSelectMemo={onSelectMemo}
+        />
+      }
+      body={<MarkdownEditor content={selectedMemo.content} keyBinding={'vim'} onChangeContent={onChangeMemoContent} />}
     />
   );
 };

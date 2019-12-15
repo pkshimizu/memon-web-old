@@ -8,11 +8,13 @@ import Button from '../../atoms/Button';
 
 interface MemoListProps {
   memos: Memo[];
+  selectedMemoUuid?: string;
   onClickAddMemo: () => void;
+  onSelectMemo: (memo: Memo) => void;
 }
 
 const MemoList: React.FC<MemoListProps> = props => {
-  const { memos, onClickAddMemo } = props;
+  const { memos, selectedMemoUuid, onClickAddMemo, onSelectMemo } = props;
   return (
     <Grid container={true} direction={'column'} alignItems={'stretch'}>
       <Button onClick={onClickAddMemo}>
@@ -20,7 +22,14 @@ const MemoList: React.FC<MemoListProps> = props => {
       </Button>
       <List>
         {memos.map((memo, index) => (
-          <ListItem key={`memo_${index}`} icon={<Note />} text={memo.title} />
+          <ListItem
+            key={`memo_${index}`}
+            icon={<Note />}
+            text={memo.title}
+            sub={memo.updatedAt}
+            selected={memo.uuid === selectedMemoUuid}
+            onClick={() => onSelectMemo(memo)}
+          />
         ))}
       </List>
     </Grid>

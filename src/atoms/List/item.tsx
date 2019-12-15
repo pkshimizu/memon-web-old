@@ -7,15 +7,18 @@ import {
 
 interface ListItemProps {
   text: string;
+  sub: string;
   icon: ReactElement;
+  selected?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 const ListItem: React.FC<ListItemProps> = props => {
-  const { text, icon } = props;
+  const { text, sub, icon, selected, onClick } = props;
   return (
-    <MUListItem button={true}>
+    <MUListItem button={true} onClick={onClick} selected={selected}>
       <MUListItemIcon>{icon}</MUListItemIcon>
-      <MUListItemText primary={text} />
+      <MUListItemText primary={text} secondary={sub} />
     </MUListItem>
   );
 };
