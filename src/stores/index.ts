@@ -1,12 +1,17 @@
 import { memoReducer } from './Memos/reducers';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
 const rootReducer = combineReducers({
   memo: memoReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
+
+const logger = createLogger({
+  diff: true,
+  collapsed: true,
+});
 
 const store = createStore(rootReducer, applyMiddleware(logger));
 
