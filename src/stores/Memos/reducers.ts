@@ -30,7 +30,11 @@ const initialState: MemosState = {
 };
 
 const getTitle = (content: string) => {
-  return content.slice(0, content.indexOf('\n'));
+  const index = content.indexOf('\n');
+  if (index < 0) {
+    return content;
+  }
+  return content.slice(0, index);
 };
 
 export function memoReducer(state = initialState, action: MemoActionTypes): MemosState {

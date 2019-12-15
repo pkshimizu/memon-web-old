@@ -1,5 +1,5 @@
 import { memoReducer } from './Memos/reducers';
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { createLogger } from 'redux-logger';
 
 const rootReducer = combineReducers({
@@ -13,6 +13,11 @@ const logger = createLogger({
   collapsed: true,
 });
 
-const store = createStore(rootReducer, applyMiddleware(logger));
+const middlewares = [];
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger);
+}
+
+const store = createStore(rootReducer, compose(applyMiddleware(...middlewares)));
 
 export default store;
