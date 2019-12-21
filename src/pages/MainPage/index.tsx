@@ -1,7 +1,7 @@
 import React from 'react';
 import SiteHeader from '../../organisms/SiteHeader';
 import MarkdownEditor from '../../atoms/MarkdownEditor';
-import MemoList from '../../organisms/MemoList';
+import SideBar from '../../organisms/SideBar';
 import MainTemplate from '../../templates/MainTemplate';
 import { Memo } from '../../stores/Memos/types';
 
@@ -19,7 +19,7 @@ const MainPage: React.FC<MainPageProps> = props => {
     <MainTemplate
       header={<SiteHeader />}
       sidebar={
-        <MemoList
+        <SideBar
           memos={memos}
           selectedMemoUuid={selectedMemo.uuid}
           onClickAddMemo={onClickAddMemo}

@@ -6,7 +6,7 @@ import MemoList from './index';
 import { action } from '@storybook/addon-actions';
 import { uuid } from 'uuidv4';
 
-const components = storiesOf('Organisms', module);
+const components = storiesOf('Molecules', module);
 components.addDecorator(withKnobs).add('MemoList', () => (
   <MemoList
     memos={[
@@ -25,7 +25,6 @@ components.addDecorator(withKnobs).add('MemoList', () => (
         updatedAt: '2019-12-09T12:34:56',
       },
     ]}
-    onClickAddMemo={action('call onClickAddMemo')}
     onSelectMemo={action('call onSelectMemo')}
   />
 ));
