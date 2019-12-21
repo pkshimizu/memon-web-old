@@ -3,7 +3,8 @@ import { createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
 
 interface MainTemplateProps {
   header: ReactNode;
-  sidebar: ReactNode;
+  buttons: ReactNode;
+  list: ReactNode;
   body: ReactNode;
 }
 
@@ -13,11 +14,13 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     left: {
-      padding: '8px 16px',
       minHeight: '100vh',
       maxHeight: '100vh',
       maxWidth: '280px',
       minWidth: '280px',
+    },
+    list: {
+      height: 'calc(100vh - 36px)',
       overflowY: 'scroll',
     },
     right: {
@@ -34,13 +37,18 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const MainTemplate: React.FC<MainTemplateProps> = props => {
-  const { header, sidebar, body } = props;
+  const { header, buttons, list, body } = props;
   const styles = useStyles();
   return (
     <div className={styles.root}>
       <Grid container={true} direction={'row'} alignItems={'stretch'}>
         <Grid item={true} className={styles.left}>
-          {sidebar}
+          <Grid container={true} direction={'column'} alignItems={'stretch'}>
+            {buttons}
+            <Grid container={true} direction={'column'} alignItems={'stretch'} className={styles.list}>
+              {list}
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item={true} className={styles.right}>
           <Grid container={true} direction={'column'} alignItems={'stretch'} className={styles.rightItems}>
