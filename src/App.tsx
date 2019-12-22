@@ -1,13 +1,13 @@
 import React from 'react';
-import MainPageContainer from './pages/MainPage/container';
 import { Switch, Route } from 'react-router';
 import LoginContainer from './pages/LoginPage/container';
+import Auth from './Auth';
 
 const App: React.FC = () => {
   return (
     <Switch>
-      <Route path={'/login'} component={LoginContainer} />
-      <Route path={'/'} component={MainPageContainer} />
+      <Route exact={true} path={'/login'} component={LoginContainer} />
+      <Auth />
     </Switch>
   );
 };
