@@ -5,10 +5,17 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './stores';
+import { Router } from 'react-router';
+// tslint:disable-next-line: no-implicit-dependencies
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router history={history}>
+      <App />
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

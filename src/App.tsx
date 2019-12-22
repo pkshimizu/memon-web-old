@@ -1,12 +1,14 @@
 import React from 'react';
-import './App.css';
 import MainPageContainer from './pages/MainPage/container';
+import { Switch, Route } from 'react-router';
+import LoginContainer from './pages/LoginPage/container';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <MainPageContainer />
-    </div>
+    <Switch>
+      <Route path={'/login'} component={LoginContainer} />
+      <Route path={'/'} component={MainPageContainer} />
+    </Switch>
   );
 };
 
