@@ -3,11 +3,14 @@ import SimpleTemplate from '../../templates/SimpleTemplate';
 import SiteLogo from '../../atoms/SiteLogo';
 import LoginForm from '../../organisms/LoginForm';
 import { Grid } from '@material-ui/core';
-import SiteTitle from "../../atoms/SiteTitle";
+import SiteTitle from '../../atoms/SiteTitle';
 
-interface LoginPageProps {}
+interface LoginPageProps {
+  onClickLogin: (email: string, password: string) => void;
+}
 
 const LoginPage: React.FC<LoginPageProps> = props => {
+  const { onClickLogin } = props;
   return (
     <SimpleTemplate
       header={
@@ -16,7 +19,7 @@ const LoginPage: React.FC<LoginPageProps> = props => {
           <SiteTitle />
         </Grid>
       }
-      body={<LoginForm />}
+      body={<LoginForm onSubmit={onClickLogin} />}
     />
   );
 };
