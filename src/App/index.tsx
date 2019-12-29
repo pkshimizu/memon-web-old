@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
-import LoginContainer from './pages/LoginPage/container';
-import MainPageContainer from './pages/MainPage/container';
+import LoginContainer from '../pages/LoginPage/container';
+import MainPageContainer from '../pages/MainPage/container';
 
 const App: React.FC = () => {
   return (
