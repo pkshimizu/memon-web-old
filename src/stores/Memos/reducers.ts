@@ -9,20 +9,9 @@ import {
   SELECT_MEMO,
 } from './types';
 import _ from 'lodash';
-import moment from 'moment';
-import { uuid } from 'uuidv4';
+import { newMemo } from './actions';
 
-function createMemo(): Memo {
-  return {
-    uuid: uuid(),
-    title: '',
-    content: '',
-    createdAt: moment().format('YYYY-MM-DDThh:mm:ss'),
-    updatedAt: moment().format('YYYY-MM-DDThh:mm:ss'),
-  };
-}
-
-const defaultMemo = createMemo();
+const defaultMemo = newMemo();
 
 const initialState: MemosState = {
   memos: [defaultMemo],
@@ -42,7 +31,7 @@ export function memoReducer(state = initialState, action: MemoActionTypes): Memo
     case LOAD_MEMOS:
       return state;
     case CREATE_MEMO:
-      const memo = createMemo();
+      const memo = action.payload.memo;
       return {
         ...state,
         memos: [memo, ...state.memos],
@@ -68,7 +57,7 @@ export function memoReducer(state = initialState, action: MemoActionTypes): Memo
     case SELECT_MEMO:
       return {
         ...state,
-        selectedMemo: state.memos[_.findIndex(state.memos, { uuid: action.payload.uuid })]
+        selectedMemo: state.memos[_.findIndex(state.memos, { uuid: action.payload.uuid })],
       };
     default:
       return state;

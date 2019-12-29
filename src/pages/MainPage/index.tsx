@@ -9,16 +9,17 @@ import MemoList from '../../molecules/MemoList';
 interface MainPageProps {
   selectedMemo: Memo;
   memos: Memo[];
+  onClickLogout: () => void;
   onClickAddMemo: () => void;
   onSelectMemo: (memo: Memo) => void;
   onChangeMemoContent: (content: string) => void;
 }
 
 const MainPage: React.FC<MainPageProps> = props => {
-  const { selectedMemo, memos, onClickAddMemo, onSelectMemo, onChangeMemoContent } = props;
+  const { selectedMemo, memos, onClickLogout, onClickAddMemo, onSelectMemo, onChangeMemoContent } = props;
   return (
     <MainTemplate
-      header={<SiteHeader />}
+      header={<SiteHeader onClickLogout={onClickLogout} />}
       buttons={<ActionButtons onClickAdd={onClickAddMemo} />}
       list={<MemoList memos={memos} selectedMemoUuid={selectedMemo.uuid} onSelectMemo={onSelectMemo} />}
       body={<MarkdownEditor content={selectedMemo.content} keyBinding={'vim'} onChangeContent={onChangeMemoContent} />}

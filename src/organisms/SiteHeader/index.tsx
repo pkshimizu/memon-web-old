@@ -5,7 +5,9 @@ import SiteLogo from '../../atoms/SiteLogo';
 import SiteTitle from '../../atoms/SiteTitle';
 import SearchBox from '../../molecules/SearchBox';
 
-interface SiteHeaderProps {}
+interface SiteHeaderProps {
+  onClickLogout: () => void;
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const SiteHeader: React.FC<SiteHeaderProps> = props => {
+  const { onClickLogout } = props;
   const styles = useStyles();
   return (
     <div className={styles.root}>
@@ -34,7 +37,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = props => {
             <SiteTitle />
           </div>
           <SearchBox />
-          <Button>Login</Button>
+          <Button onClick={onClickLogout}>Logout</Button>
         </Toolbar>
       </AppBar>
     </div>

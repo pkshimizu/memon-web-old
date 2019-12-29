@@ -8,13 +8,17 @@ import store from './stores';
 import { Router } from 'react-router';
 // tslint:disable-next-line: no-implicit-dependencies
 import { createBrowserHistory } from 'history';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import firebase from './firebase';
 
 const history = createBrowserHistory();
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <App />
+      <ReactReduxFirebaseProvider firebase={firebase} config={{}} dispatch={store.dispatch}>
+        <App />
+      </ReactReduxFirebaseProvider>
     </Router>
   </Provider>,
   document.getElementById('root')

@@ -1,4 +1,18 @@
-import { CREATE_MEMO, DELETE_MEMO, LOAD_MEMOS, MemoActionTypes, SAVE_MEMO, SELECT_MEMO } from './types';
+import { CREATE_MEMO, DELETE_MEMO, LOAD_MEMOS, Memo, MemoActionTypes, SAVE_MEMO, SELECT_MEMO } from './types';
+import { uuid } from 'uuidv4';
+import moment from 'moment';
+import { ThunkAction } from 'redux-thunk';
+import { RootState } from '../index';
+
+export function newMemo(): Memo {
+  return {
+    uuid: uuid(),
+    title: '',
+    content: '',
+    createdAt: moment().format('YYYY-MM-DDThh:mm:ss'),
+    updatedAt: moment().format('YYYY-MM-DDThh:mm:ss'),
+  };
+}
 
 export function loadMemos(): MemoActionTypes {
   return {
@@ -6,11 +20,22 @@ export function loadMemos(): MemoActionTypes {
   };
 }
 
-export function createMemo(): MemoActionTypes {
-  return {
-    type: CREATE_MEMO,
+export const createMemo = (): ThunkAction<void, RootState, any, MemoActionTypes> => {
+  return (dispatch, getState, { getFirestore }) => {
+    const memo = newMemo();
+    getFirestore()
+      .collection('memos')
+      .add(memo)
+      .then(() => {
+        dispatch({
+          type: CREATE_MEMO,
+          payload: {
+            memo: memo,
+          },
+        });
+      });
   };
-}
+};
 
 export function saveMemo(uuid: string, content: string): MemoActionTypes {
   return {

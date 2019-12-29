@@ -1,16 +1,24 @@
 import React from 'react';
 import LoginPage from './index';
-import firebase from '../../firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../stores/Users/actions';
+import { User } from 'firebase';
+import { RootState } from '../../stores';
+import { Redirect } from 'react-router';
 
 const LoginContainer: React.FC = () => {
-  const onClickLogin = React.useCallback((email, password) => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(res => {
-        console.log(res);
-      });
-  }, []);
+  const user = useSelector<RootState, User | undefined>(state => state.user.user);
+
+  const dispatch = useDispatch();
+  const onClickLogin = React.useCallback(
+    (email, password) => {
+      dispatch(login(email, password));
+    },
+    [dispatch]
+  );
+  if (user !== undefined) {
+    return <Redirect to={'/'} />;
+  }
   return <LoginPage onClickLogin={onClickLogin} />;
 };
 

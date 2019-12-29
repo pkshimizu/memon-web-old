@@ -23,6 +23,9 @@ interface LoadMemosAction {
 
 interface CreateMemoAction {
   type: typeof CREATE_MEMO;
+  payload: {
+    memo: Memo;
+  };
 }
 
 interface SaveMemoAction {
