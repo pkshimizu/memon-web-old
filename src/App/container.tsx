@@ -6,7 +6,7 @@ import PageLoading from '../molecules/PageLoading';
 import { loadUser } from '../stores/Users/actions';
 
 const AppContainer: React.FC = () => {
-  const loading = useSelector<RootState, boolean>(state => state.user.loading);
+  const loading = useSelector<RootState, boolean>(state => state.system.loading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadUser());

@@ -11,43 +11,43 @@ export interface MemosState {
   selectedMemo: Memo;
 }
 
-export const LOAD_MEMOS = 'LOAD_MEMOS';
-export const CREATE_MEMO = 'CREATE_MEMO';
-export const SAVE_MEMO = 'SAVE_MEMO';
-export const DELETE_MEMO = 'DELETE_MEMO';
-export const SELECT_MEMO = 'SELECT_MEMO';
+export const MEMOS_LOAD = 'MEMOS_LOAD';
+export const MEMOS_ADD = 'MEMOS_ADD';
+export const MEMOS_SAVE = 'MEMOS_SAVE';
+export const MEMOS_REMOVE = 'MEMOS_REMOVE';
+export const MEMOS_SELECT = 'MEMOS_SELECT';
 
-interface LoadMemosAction {
-  type: typeof LOAD_MEMOS;
+interface MemosLoadAction {
+  type: typeof MEMOS_LOAD;
 }
 
-interface CreateMemoAction {
-  type: typeof CREATE_MEMO;
+interface MemoAddAction {
+  type: typeof MEMOS_ADD;
   payload: {
     memo: Memo;
   };
 }
 
-interface SaveMemoAction {
-  type: typeof SAVE_MEMO;
+interface MemoSaveAction {
+  type: typeof MEMOS_SAVE;
   payload: {
     uuid: string;
     content: string;
   };
 }
 
-interface DeleteMemoAction {
-  type: typeof DELETE_MEMO;
+interface MemoRemoveAction {
+  type: typeof MEMOS_REMOVE;
   payload: {
     uuid: string;
   };
 }
 
-interface SelectMemoAction {
-  type: typeof SELECT_MEMO;
+interface MemoSelectAction {
+  type: typeof MEMOS_SELECT;
   payload: {
     uuid: string;
   };
 }
 
-export type MemoActionTypes = LoadMemosAction | CreateMemoAction | SaveMemoAction | DeleteMemoAction | SelectMemoAction;
+export type MemoActionTypes = MemosLoadAction | MemoAddAction | MemoSaveAction | MemoRemoveAction | MemoSelectAction;

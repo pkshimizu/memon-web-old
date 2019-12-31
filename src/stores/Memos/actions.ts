@@ -1,10 +1,10 @@
-import { CREATE_MEMO, DELETE_MEMO, LOAD_MEMOS, Memo, MemoActionTypes, SAVE_MEMO, SELECT_MEMO } from './types';
+import { MEMOS_ADD, MEMOS_REMOVE, MEMOS_LOAD, Memo, MemoActionTypes, MEMOS_SAVE, MEMOS_SELECT } from './types';
 import { uuid } from 'uuidv4';
 import moment from 'moment';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../index';
 
-export function newMemo(): Memo {
+export const newMemo = (): Memo => {
   return {
     uuid: uuid(),
     title: '',
@@ -12,13 +12,15 @@ export function newMemo(): Memo {
     createdAt: moment().format('YYYY-MM-DDThh:mm:ss'),
     updatedAt: moment().format('YYYY-MM-DDThh:mm:ss'),
   };
-}
+};
 
-export function loadMemos(): MemoActionTypes {
-  return {
-    type: LOAD_MEMOS,
+export const loadMemos = (): ThunkAction<void, RootState, any, MemoActionTypes> => {
+  return dispatch => {
+    dispatch({
+      type: MEMOS_LOAD,
+    });
   };
-}
+};
 
 export const createMemo = (): ThunkAction<void, RootState, any, MemoActionTypes> => {
   return (dispatch, getState, { getFirestore }) => {
@@ -28,7 +30,7 @@ export const createMemo = (): ThunkAction<void, RootState, any, MemoActionTypes>
       .add(memo)
       .then(() => {
         dispatch({
-          type: CREATE_MEMO,
+          type: MEMOS_ADD,
           payload: {
             memo: memo,
           },
@@ -37,30 +39,36 @@ export const createMemo = (): ThunkAction<void, RootState, any, MemoActionTypes>
   };
 };
 
-export function saveMemo(uuid: string, content: string): MemoActionTypes {
-  return {
-    type: SAVE_MEMO,
-    payload: {
-      uuid: uuid,
-      content: content,
-    },
+export const saveMemo = (memoUuid: string, content: string): ThunkAction<void, RootState, any, MemoActionTypes> => {
+  return dispatch => {
+    dispatch({
+      type: MEMOS_SAVE,
+      payload: {
+        uuid: memoUuid,
+        content: content,
+      },
+    });
   };
-}
+};
 
-export function deleteMemos(uuid: string): MemoActionTypes {
-  return {
-    type: DELETE_MEMO,
-    payload: {
-      uuid: uuid,
-    },
+export const deleteMemos = (memoUuid: string): ThunkAction<void, RootState, any, MemoActionTypes> => {
+  return dispatch => {
+    dispatch({
+      type: MEMOS_REMOVE,
+      payload: {
+        uuid: memoUuid,
+      },
+    });
   };
-}
+};
 
-export function selectMemo(uuid: string): MemoActionTypes {
-  return {
-    type: SELECT_MEMO,
-    payload: {
-      uuid: uuid,
-    },
+export const selectMemo = (memoUuid: string): ThunkAction<void, RootState, any, MemoActionTypes> => {
+  return dispatch => {
+    dispatch({
+      type: MEMOS_SELECT,
+      payload: {
+        uuid: memoUuid,
+      },
+    });
   };
-}
+};
