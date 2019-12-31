@@ -1,12 +1,12 @@
 import {
-  CREATE_MEMO,
-  DELETE_MEMO,
-  LOAD_MEMOS,
+  MEMOS_ADD,
+  MEMOS_REMOVE,
+  MEMOS_LOAD,
   Memo,
   MemoActionTypes,
   MemosState,
-  SAVE_MEMO,
-  SELECT_MEMO,
+  MEMOS_SAVE,
+  MEMOS_SELECT,
 } from './types';
 import _ from 'lodash';
 import { newMemo } from './actions';
@@ -28,16 +28,16 @@ const getTitle = (content: string) => {
 
 export function memoReducer(state = initialState, action: MemoActionTypes): MemosState {
   switch (action.type) {
-    case LOAD_MEMOS:
+    case MEMOS_LOAD:
       return state;
-    case CREATE_MEMO:
+    case MEMOS_ADD:
       const memo = action.payload.memo;
       return {
         ...state,
         memos: [memo, ...state.memos],
         selectedMemo: memo,
       };
-    case SAVE_MEMO:
+    case MEMOS_SAVE:
       return {
         ...state,
         memos: _.map(state.memos, (memo: Memo) => {
@@ -52,9 +52,9 @@ export function memoReducer(state = initialState, action: MemoActionTypes): Memo
           content: action.payload.content,
         },
       };
-    case DELETE_MEMO:
+    case MEMOS_REMOVE:
       return { ...state, memos: _.filter(state.memos, (memo: Memo) => action.payload.uuid !== memo.uuid) };
-    case SELECT_MEMO:
+    case MEMOS_SELECT:
       return {
         ...state,
         selectedMemo: state.memos[_.findIndex(state.memos, { uuid: action.payload.uuid })],
