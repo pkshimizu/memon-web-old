@@ -23,7 +23,11 @@ const MainPageContainer: React.FC = () => {
   const onClickLogout = React.useCallback(() => {
     dispatch(logout());
   }, [dispatch]);
-  const onClickAddMemo = React.useCallback(() => dispatch(createMemo()), [dispatch]);
+  const onClickAddMemo = React.useCallback(() => {
+    if (user !== undefined) {
+      dispatch(createMemo(user.uid));
+    }
+  }, [dispatch, user]);
   const onSelectMemo = React.useCallback(memo => dispatch(selectMemo(memo.uuid)), [dispatch]);
   const onChangeMemoContent = React.useCallback(
     content => {

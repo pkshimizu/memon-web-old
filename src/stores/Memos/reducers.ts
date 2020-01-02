@@ -1,7 +1,7 @@
 import {
   MEMOS_ADD,
   MEMOS_REMOVE,
-  MEMOS_LOAD,
+  MEMOS_SET,
   Memo,
   MemoActionTypes,
   MemosState,
@@ -9,7 +9,7 @@ import {
   MEMOS_SELECT,
 } from './types';
 import _ from 'lodash';
-import { getTitle, newMemo } from './actions';
+import { getTitle } from './actions';
 
 const initialState: MemosState = {
   memos: [],
@@ -18,7 +18,7 @@ const initialState: MemosState = {
 
 export function memoReducer(state = initialState, action: MemoActionTypes): MemosState {
   switch (action.type) {
-    case MEMOS_LOAD:
+    case MEMOS_SET:
       return {
         ...state,
         memos: action.payload.memos,

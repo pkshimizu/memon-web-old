@@ -1,14 +1,16 @@
-import { MEMOS_ADD, MEMOS_REMOVE, MEMOS_LOAD, Memo, MemoActionTypes, MEMOS_SAVE, MEMOS_SELECT } from './types';
+import { MEMOS_ADD, MEMOS_REMOVE, Memo, MemoActionTypes, MEMOS_SAVE, MEMOS_SELECT } from './types';
 import { uuid } from 'uuidv4';
 import moment from 'moment';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../index';
+import firebase from 'firebase';
+
+const dateFormat = 'YYYY-MM-DDTHH:mm:ss';
 
 interface MemoDocument {
-  id: string;
   content: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: firebase.firestore.Timestamp;
+  updatedAt: firebase.firestore.Timestamp;
 }
 
 export const newMemo = (): Memo => {
@@ -16,8 +18,26 @@ export const newMemo = (): Memo => {
     uuid: uuid(),
     title: '',
     content: '',
-    createdAt: moment().format('YYYY-MM-DDTHH:mm:ss'),
-    updatedAt: moment().format('YYYY-MM-DDTHH:mm:ss'),
+    createdAt: moment().format(dateFormat),
+    updatedAt: moment().format(dateFormat),
+  };
+};
+
+const toMemo = (id: string, doc: MemoDocument): Memo => {
+  return {
+    uuid: id,
+    title: getTitle(doc.content),
+    content: doc.content,
+    createdAt: moment(doc.createdAt.toMillis()).format(dateFormat),
+    updatedAt: moment(doc.updatedAt.toMillis()).format(dateFormat),
+  };
+};
+
+const toDoc = (memo: Memo): MemoDocument => {
+  return {
+    content: memo.content,
+    createdAt: firebase.firestore.Timestamp.fromDate(moment(memo.createdAt, dateFormat).toDate()),
+    updatedAt: firebase.firestore.Timestamp.fromDate(moment(memo.updatedAt, dateFormat).toDate()),
   };
 };
 
@@ -31,44 +51,44 @@ export const getTitle = (content: string) => {
 
 export const loadMemos = (uid: string): ThunkAction<void, RootState, any, MemoActionTypes> => {
   return (dispatch, getState, { getFirestore }) => {
-    getFirestore()
+    const firestore = getFirestore();
+    firestore
       .doc(`/users/${uid}`)
       .collection('memos')
-      .get()
-      // TODO QuerySnapshot がimportできないので、anyで回避
-      .then((memoCollection: any) => {
-        // TODO QueryDocumentSnapshot がimportできないので、anyで回避
-        const memos = memoCollection.docs.map((doc: any) => ({
-          uuid: doc.id,
-          title: getTitle(doc.data().content),
-          content: doc.data().content,
-          createdAt: moment(doc.data().createdAt.toMillis()).format('YYYY-MM-DDTHH:mm:ss'),
-          updatedAt: moment(doc.data().updatedAt.toMillis()).format('YYYY-MM-DDTHH:mm:ss'),
-        }));
-        dispatch({
-          type: MEMOS_LOAD,
-          payload: {
-            memos: memos,
-          },
+      .onSnapshot((snapshot: firebase.firestore.QuerySnapshot<MemoDocument>) => {
+        snapshot.docChanges().forEach(({ doc, type }) => {
+          switch (type) {
+            case 'added':
+              dispatch({
+                type: MEMOS_ADD,
+                payload: {
+                  memo: toMemo(doc.id, doc.data()),
+                },
+              });
+              return;
+            case 'modified':
+              return;
+            case 'removed':
+              dispatch({
+                type: MEMOS_REMOVE,
+                payload: {
+                  uuid: doc.id,
+                },
+              });
+              return;
+          }
         });
       });
   };
 };
 
-export const createMemo = (): ThunkAction<void, RootState, any, MemoActionTypes> => {
+export const createMemo = (uid: string): ThunkAction<void, RootState, any, MemoActionTypes> => {
   return (dispatch, getState, { getFirestore }) => {
     const memo = newMemo();
     getFirestore()
+      .doc(`/users/${uid}`)
       .collection('memos')
-      .add(memo)
-      .then(() => {
-        dispatch({
-          type: MEMOS_ADD,
-          payload: {
-            memo: memo,
-          },
-        });
-      });
+      .add(toDoc(memo));
   };
 };
 

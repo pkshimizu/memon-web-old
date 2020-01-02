@@ -11,14 +11,14 @@ export interface MemosState {
   selectedMemo: Memo | undefined;
 }
 
-export const MEMOS_LOAD = 'MEMOS_LOAD';
+export const MEMOS_SET = 'MEMOS_SET';
 export const MEMOS_ADD = 'MEMOS_ADD';
 export const MEMOS_SAVE = 'MEMOS_SAVE';
 export const MEMOS_REMOVE = 'MEMOS_REMOVE';
 export const MEMOS_SELECT = 'MEMOS_SELECT';
 
-interface MemosLoadAction {
-  type: typeof MEMOS_LOAD;
+interface MemosSetAction {
+  type: typeof MEMOS_SET;
   payload: {
     memos: Memo[];
   };
@@ -53,4 +53,4 @@ interface MemoSelectAction {
   };
 }
 
-export type MemoActionTypes = MemosLoadAction | MemoAddAction | MemoSaveAction | MemoRemoveAction | MemoSelectAction;
+export type MemoActionTypes = MemosSetAction | MemoAddAction | MemoSaveAction | MemoRemoveAction | MemoSelectAction;
