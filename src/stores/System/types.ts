@@ -1,6 +1,6 @@
 export interface SystemState {
   loading: boolean;
-};
+}
 
 export const SYSTEM_LOADING = 'SYSTEM_LOADING';
 

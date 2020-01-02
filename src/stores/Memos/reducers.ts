@@ -9,27 +9,21 @@ import {
   MEMOS_SELECT,
 } from './types';
 import _ from 'lodash';
-import { newMemo } from './actions';
-
-const defaultMemo = newMemo();
+import { getTitle, newMemo } from './actions';
 
 const initialState: MemosState = {
-  memos: [defaultMemo],
-  selectedMemo: defaultMemo,
-};
-
-const getTitle = (content: string) => {
-  const index = content.indexOf('\n');
-  if (index < 0) {
-    return content;
-  }
-  return content.slice(0, index);
+  memos: [],
+  selectedMemo: undefined,
 };
 
 export function memoReducer(state = initialState, action: MemoActionTypes): MemosState {
   switch (action.type) {
     case MEMOS_LOAD:
-      return state;
+      return {
+        ...state,
+        memos: action.payload.memos,
+        selectedMemo: action.payload.memos[0],
+      };
     case MEMOS_ADD:
       const memo = action.payload.memo;
       return {
@@ -46,11 +40,14 @@ export function memoReducer(state = initialState, action: MemoActionTypes): Memo
           }
           return memo;
         }),
-        selectedMemo: {
-          ...state.selectedMemo,
-          title: getTitle(action.payload.content),
-          content: action.payload.content,
-        },
+        selectedMemo:
+          state.selectedMemo === undefined
+            ? undefined
+            : {
+                ...state.selectedMemo,
+                title: getTitle(action.payload.content),
+                content: action.payload.content,
+              },
       };
     case MEMOS_REMOVE:
       return { ...state, memos: _.filter(state.memos, (memo: Memo) => action.payload.uuid !== memo.uuid) };

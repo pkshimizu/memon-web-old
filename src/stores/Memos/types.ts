@@ -8,7 +8,7 @@ export interface Memo {
 
 export interface MemosState {
   memos: Memo[];
-  selectedMemo: Memo;
+  selectedMemo: Memo | undefined;
 }
 
 export const MEMOS_LOAD = 'MEMOS_LOAD';
@@ -19,6 +19,9 @@ export const MEMOS_SELECT = 'MEMOS_SELECT';
 
 interface MemosLoadAction {
   type: typeof MEMOS_LOAD;
+  payload: {
+    memos: Memo[];
+  };
 }
 
 interface MemoAddAction {

@@ -7,7 +7,7 @@ import ActionButtons from '../../molecules/ActionButtons';
 import MemoList from '../../molecules/MemoList';
 
 interface MainPageProps {
-  selectedMemo: Memo;
+  selectedMemo: Memo | undefined;
   memos: Memo[];
   onClickLogout: () => void;
   onClickAddMemo: () => void;
@@ -21,8 +21,20 @@ const MainPage: React.FC<MainPageProps> = props => {
     <MainTemplate
       header={<SiteHeader onClickLogout={onClickLogout} />}
       buttons={<ActionButtons onClickAdd={onClickAddMemo} />}
-      list={<MemoList memos={memos} selectedMemoUuid={selectedMemo.uuid} onSelectMemo={onSelectMemo} />}
-      body={<MarkdownEditor content={selectedMemo.content} keyBinding={'vim'} onChangeContent={onChangeMemoContent} />}
+      list={
+        <MemoList
+          memos={memos}
+          selectedMemoUuid={selectedMemo === undefined ? undefined : selectedMemo.uuid}
+          onSelectMemo={onSelectMemo}
+        />
+      }
+      body={
+        <MarkdownEditor
+          content={selectedMemo === undefined ? '' : selectedMemo.content}
+          keyBinding={'vim'}
+          onChangeContent={onChangeMemoContent}
+        />
+      }
     />
   );
 };
