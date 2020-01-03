@@ -67,6 +67,13 @@ export const loadMemos = (uid: string): ThunkAction<void, RootState, any, MemoAc
               });
               return;
             case 'modified':
+              dispatch({
+                type: MEMOS_SAVE,
+                payload: {
+                  uuid: doc.id,
+                  content: doc.data().content,
+                },
+              });
               return;
             case 'removed':
               dispatch({
@@ -92,15 +99,16 @@ export const createMemo = (uid: string): ThunkAction<void, RootState, any, MemoA
   };
 };
 
-export const saveMemo = (memoUuid: string, content: string): ThunkAction<void, RootState, any, MemoActionTypes> => {
-  return dispatch => {
-    dispatch({
-      type: MEMOS_SAVE,
-      payload: {
-        uuid: memoUuid,
-        content: content,
-      },
-    });
+export const saveMemo = (
+  uid: string,
+  memoUuid: string,
+  content: string
+): ThunkAction<void, RootState, any, MemoActionTypes> => {
+  return (dispatch, getState, { getFirestore }) => {
+    getFirestore()
+      .collection(`/users/${uid}/memos`)
+      .doc(`${memoUuid}`)
+      .update({ content: content });
   };
 };
 

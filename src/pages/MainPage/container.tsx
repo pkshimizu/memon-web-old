@@ -31,11 +31,11 @@ const MainPageContainer: React.FC = () => {
   const onSelectMemo = React.useCallback(memo => dispatch(selectMemo(memo.uuid)), [dispatch]);
   const onChangeMemoContent = React.useCallback(
     content => {
-      if (selectedMemo !== undefined) {
-        dispatch(saveMemo(selectedMemo.uuid, content));
+      if (user !== undefined && selectedMemo !== undefined) {
+        dispatch(saveMemo(user.uid, selectedMemo.uuid, content));
       }
     },
-    [dispatch, selectedMemo]
+    [dispatch, user, selectedMemo]
   );
 
   if (user === undefined) {

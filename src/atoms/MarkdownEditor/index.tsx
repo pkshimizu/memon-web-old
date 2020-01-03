@@ -13,6 +13,7 @@ interface MarkdownEditorProps {
 
 const MarkdownEditor: React.FC<MarkdownEditorProps> = props => {
   const { content, keyBinding, onChangeContent } = props;
+  console.log(content);
   return (
     <AceEditor
       value={content}
@@ -21,7 +22,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = props => {
       theme={'textmate'}
       keyboardHandler={keyBinding}
       fontSize={14}
-      showPrintMargin={true}
+      showPrintMargin={false}
       showGutter={true}
       highlightActiveLine={true}
       width={'100%'}
@@ -31,6 +32,8 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = props => {
         tabSize: 2,
       }}
       onChange={onChangeContent}
+      editorProps={{ $blockScrolling: true }}
+      debounceChangePeriod={1000}
     />
   );
 };
