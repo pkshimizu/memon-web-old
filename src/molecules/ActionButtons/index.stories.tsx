@@ -8,4 +8,6 @@ import ActionButtons from './index';
 const components = storiesOf('Molecules', module);
 components
   .addDecorator(withKnobs)
-  .add('ActionButtons', () => <ActionButtons onClickAdd={action('call onClickAddMemo')} />);
+  .add('ActionButtons', () => (
+    <ActionButtons onClickAdd={action('call onClickAdd')} onClickRemove={action('call onClickRemove')} />
+  ));

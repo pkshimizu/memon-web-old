@@ -67,11 +67,13 @@ export const loadMemos = (uid: string): ThunkAction<void, RootState, any, MemoAc
               });
               return;
             case 'modified':
+              const memo = toMemo(doc.id, doc.data());
               dispatch({
                 type: MEMOS_SAVE,
                 payload: {
-                  uuid: doc.id,
-                  content: doc.data().content,
+                  uuid: memo.uuid,
+                  content: memo.content,
+                  updatedAt: memo.updatedAt,
                 },
               });
               return;
@@ -108,18 +110,16 @@ export const saveMemo = (
     getFirestore()
       .collection(`/users/${uid}/memos`)
       .doc(`${memoUuid}`)
-      .update({ content: content });
+      .update({ content: content, updatedAt: firebase.firestore.Timestamp.fromDate(moment().toDate()) });
   };
 };
 
-export const deleteMemos = (memoUuid: string): ThunkAction<void, RootState, any, MemoActionTypes> => {
-  return dispatch => {
-    dispatch({
-      type: MEMOS_REMOVE,
-      payload: {
-        uuid: memoUuid,
-      },
-    });
+export const deleteMemo = (uid: string, memoUuid: string): ThunkAction<void, RootState, any, MemoActionTypes> => {
+  return (dispatch, getState, { getFirestore }) => {
+    getFirestore()
+      .collection(`/users/${uid}/memos`)
+      .doc(`${memoUuid}`)
+      .delete();
   };
 };
 

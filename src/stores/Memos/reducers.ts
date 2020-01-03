@@ -36,7 +36,7 @@ export function memoReducer(state = initialState, action: MemoActionTypes): Memo
         ...state,
         memos: _.map(state.memos, (memo: Memo) => {
           if (action.payload.uuid === memo.uuid) {
-            return { ...memo, title: getTitle(action.payload.content), content: action.payload.content };
+            return { ...memo, title: getTitle(action.payload.content), content: action.payload.content, updatedAt: action.payload.updatedAt };
           }
           return memo;
         }),
@@ -47,6 +47,7 @@ export function memoReducer(state = initialState, action: MemoActionTypes): Memo
                 ...state.selectedMemo,
                 title: getTitle(action.payload.content),
                 content: action.payload.content,
+                updatedAt: action.payload.updatedAt,
               },
       };
     case MEMOS_REMOVE:

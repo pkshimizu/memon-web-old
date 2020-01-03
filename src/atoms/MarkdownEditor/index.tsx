@@ -13,7 +13,6 @@ interface MarkdownEditorProps {
 
 const MarkdownEditor: React.FC<MarkdownEditorProps> = props => {
   const { content, keyBinding, onChangeContent } = props;
-  console.log(content);
   return (
     <AceEditor
       value={content}

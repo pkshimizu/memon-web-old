@@ -36,6 +36,7 @@ interface MemoSaveAction {
   payload: {
     uuid: string;
     content: string;
+    updatedAt: string;
   };
 }
 

@@ -11,16 +11,17 @@ interface MainPageProps {
   memos: Memo[];
   onClickLogout: () => void;
   onClickAddMemo: () => void;
+  onClickRemoveMemo: () => void;
   onSelectMemo: (memo: Memo) => void;
   onChangeMemoContent: (content: string) => void;
 }
 
 const MainPage: React.FC<MainPageProps> = props => {
-  const { selectedMemo, memos, onClickLogout, onClickAddMemo, onSelectMemo, onChangeMemoContent } = props;
+  const { selectedMemo, memos, onClickLogout, onClickAddMemo, onClickRemoveMemo, onSelectMemo, onChangeMemoContent } = props;
   return (
     <MainTemplate
       header={<SiteHeader onClickLogout={onClickLogout} />}
-      buttons={<ActionButtons onClickAdd={onClickAddMemo} />}
+      buttons={<ActionButtons onClickAdd={onClickAddMemo} onClickRemove={onClickRemoveMemo} />}
       list={
         <MemoList
           memos={memos}

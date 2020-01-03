@@ -3,7 +3,7 @@ import MainPage from './index';
 import { Memo } from '../../stores/Memos/types';
 import { RootState } from '../../stores';
 import { useDispatch, useSelector } from 'react-redux';
-import { createMemo, loadMemos, saveMemo, selectMemo } from '../../stores/Memos/actions';
+import { createMemo, deleteMemo, loadMemos, saveMemo, selectMemo } from '../../stores/Memos/actions';
 import { User } from 'firebase';
 import { Redirect } from 'react-router';
 import { logout } from '../../stores/Users/actions';
@@ -28,6 +28,11 @@ const MainPageContainer: React.FC = () => {
       dispatch(createMemo(user.uid));
     }
   }, [dispatch, user]);
+  const onClickRemoveMemo = React.useCallback(() => {
+    if (user !== undefined && selectedMemo !== undefined) {
+      dispatch(deleteMemo(user.uid, selectedMemo.uuid));
+    }
+  }, [dispatch, user, selectedMemo]);
   const onSelectMemo = React.useCallback(memo => dispatch(selectMemo(memo.uuid)), [dispatch]);
   const onChangeMemoContent = React.useCallback(
     content => {
@@ -48,6 +53,7 @@ const MainPageContainer: React.FC = () => {
       memos={memos}
       onClickLogout={onClickLogout}
       onClickAddMemo={onClickAddMemo}
+      onClickRemoveMemo={onClickRemoveMemo}
       onSelectMemo={onSelectMemo}
       onChangeMemoContent={onChangeMemoContent}
     />
