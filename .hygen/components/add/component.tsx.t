@@ -1,5 +1,5 @@
 ---
-to: src/<%= atomicDirectory %>/<%= componentName %>/Auth.tsx
+to: src/<%= atomicDirectory %>/<%= componentName %>/index.tsx
 ---
 import React from 'react';
 

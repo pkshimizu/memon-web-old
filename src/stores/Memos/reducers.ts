@@ -36,7 +36,12 @@ export function memoReducer(state = initialState, action: MemoActionTypes): Memo
         ...state,
         memos: _.map(state.memos, (memo: Memo) => {
           if (action.payload.uuid === memo.uuid) {
-            return { ...memo, title: getTitle(action.payload.content), content: action.payload.content, updatedAt: action.payload.updatedAt };
+            return {
+              ...memo,
+              title: getTitle(action.payload.content),
+              content: action.payload.content,
+              updatedAt: action.payload.updatedAt,
+            };
           }
           return memo;
         }),
@@ -51,7 +56,9 @@ export function memoReducer(state = initialState, action: MemoActionTypes): Memo
               },
       };
     case MEMOS_REMOVE:
-      return { ...state, memos: _.filter(state.memos, (memo: Memo) => action.payload.uuid !== memo.uuid) };
+      const memos = state.memos.filter((memo: Memo) => action.payload.uuid !== memo.uuid);
+      const selectedMemo = memos.length === 0 ? undefined : memos[0];
+      return { ...state, memos: memos, selectedMemo: selectedMemo };
     case MEMOS_SELECT:
       return {
         ...state,
