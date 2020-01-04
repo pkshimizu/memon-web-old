@@ -8,11 +8,12 @@ import 'ace-builds/src-noconflict/keybinding-emacs';
 interface MarkdownEditorProps {
   content: string;
   onChangeContent: (content: string) => void;
+  focus: boolean;
   keyBinding?: string;
 }
 
 const MarkdownEditor: React.FC<MarkdownEditorProps> = props => {
-  const { content, keyBinding, onChangeContent } = props;
+  const { content, keyBinding, onChangeContent, focus } = props;
   return (
     <AceEditor
       value={content}
@@ -33,6 +34,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = props => {
       onChange={onChangeContent}
       editorProps={{ $blockScrolling: true }}
       debounceChangePeriod={1000}
+      focus={focus}
     />
   );
 };

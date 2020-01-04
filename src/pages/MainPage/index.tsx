@@ -50,6 +50,7 @@ const MainPage: React.FC<MainPageProps> = props => {
             content={selectedMemo === undefined ? '' : selectedMemo.content}
             keyBinding={'vim'}
             onChangeContent={onChangeMemoContent}
+            focus={true}
           />
         }
       />
