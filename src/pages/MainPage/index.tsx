@@ -6,10 +6,12 @@ import { Memo } from '../../stores/Memos/types';
 import ActionButtons from '../../molecules/ActionButtons';
 import MemoList from '../../molecules/MemoList';
 import ConfirmDialog from '../../organisms/ConfirmDialog';
+import { Shortcut } from '../../defines';
 
 interface MainPageProps {
   selectedMemo: Memo | undefined;
   memos: Memo[];
+  shortcuts: Shortcut[];
   onClickLogout: () => void;
   onClickAddMemo: () => void;
   onClickRemoveMemo: () => void;
@@ -24,6 +26,7 @@ const MainPage: React.FC<MainPageProps> = props => {
   const {
     selectedMemo,
     memos,
+    shortcuts,
     onClickLogout,
     onClickAddMemo,
     onClickRemoveMemo,
@@ -51,6 +54,7 @@ const MainPage: React.FC<MainPageProps> = props => {
             keyBinding={'vim'}
             onChangeContent={onChangeMemoContent}
             focus={true}
+            shortcuts={shortcuts}
           />
         }
       />

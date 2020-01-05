@@ -7,6 +7,7 @@ import { createMemo, deleteMemo, loadMemos, saveMemo, selectMemo } from '../../s
 import { User } from 'firebase';
 import { Redirect } from 'react-router';
 import { logout } from '../../stores/Users/actions';
+import { Shortcut } from '../../defines';
 
 const MainPageContainer: React.FC = () => {
   const [openRemoveConfirm, updateOpenRemoveConfirm] = useState(false);
@@ -50,6 +51,14 @@ const MainPageContainer: React.FC = () => {
   );
   const onCloseRemoveConfirm = React.useCallback(() => updateOpenRemoveConfirm(false), []);
 
+  const shortcuts: Shortcut[] = [
+    {
+      name: 'AddMemo',
+      key: 'alt+n',
+      handler: onClickAddMemo,
+    },
+  ];
+
   if (user === undefined) {
     return <Redirect to={'/login'} />;
   }
@@ -58,6 +67,7 @@ const MainPageContainer: React.FC = () => {
     <MainPage
       selectedMemo={selectedMemo}
       memos={memos}
+      shortcuts={shortcuts}
       onClickLogout={onClickLogout}
       onClickAddMemo={onClickAddMemo}
       onClickRemoveMemo={onClickRemoveMemo}

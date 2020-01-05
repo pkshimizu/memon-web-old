@@ -1,19 +1,26 @@
 import React from 'react';
-import AceEditor from 'react-ace';
+import AceEditor, { ICommand } from 'react-ace';
 import 'ace-builds/src-noconflict/mode-markdown';
 import 'ace-builds/src-noconflict/theme-textmate';
 import 'ace-builds/src-noconflict/keybinding-vim';
 import 'ace-builds/src-noconflict/keybinding-emacs';
+import { Shortcut } from '../../defines';
 
 interface MarkdownEditorProps {
   content: string;
   onChangeContent: (content: string) => void;
   focus: boolean;
   keyBinding?: string;
+  shortcuts?: Shortcut[];
 }
 
 const MarkdownEditor: React.FC<MarkdownEditorProps> = props => {
-  const { content, keyBinding, onChangeContent, focus } = props;
+  const { content, keyBinding, onChangeContent, focus, shortcuts } = props;
+  const commands: ICommand[] = (shortcuts || []).map(shortcut => ({
+    name: shortcut.name,
+    bindKey: { win: shortcut.key.replace('+', '-'), mac: shortcut.key.replace('+', '-') },
+    exec: shortcut.handler,
+  }));
   return (
     <AceEditor
       value={content}
@@ -35,6 +42,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = props => {
       editorProps={{ $blockScrolling: true }}
       debounceChangePeriod={1000}
       focus={focus}
+      commands={commands}
     />
   );
 };
