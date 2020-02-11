@@ -2,7 +2,7 @@ import React from 'react';
 import List from '../../atoms/List';
 import ListItem from '../../atoms/List/item';
 import { Note } from '@material-ui/icons';
-import { Memo } from '../../stores/Memos/types';
+import { Memo } from '../../../stores/Memos/types';
 
 interface MemoListProps {
   memos: Memo[];

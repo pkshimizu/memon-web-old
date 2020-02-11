@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { IconButton as MUIconButton } from '@material-ui/core';
-import { Color } from '../../defines';
+import { Color } from '../../../defines';
 
 interface IconButtonProps {
   icon: ReactNode;

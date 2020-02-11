@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextField as MUTextFiled } from '@material-ui/core';
-import { TextColor } from '../../defines';
+import { TextColor } from '../../../defines';
 
 interface TextFieldProps {
   label: string;

@@ -1,11 +1,11 @@
 import React from 'react';
-import SiteHeader from '../../organisms/SiteHeader';
-import MarkdownEditor from '../../atoms/MarkdownEditor';
-import MainTemplate from '../../templates/MainTemplate';
+import SiteHeader from '../../components/organisms/SiteHeader';
+import MarkdownEditor from '../../components/atoms/MarkdownEditor';
+import MainTemplate from '../../components/templates/MainTemplate';
 import { Memo } from '../../stores/Memos/types';
-import ActionButtons from '../../molecules/ActionButtons';
-import MemoList from '../../molecules/MemoList';
-import ConfirmDialog from '../../organisms/ConfirmDialog';
+import ActionButtons from '../../components/molecules/ActionButtons';
+import MemoList from '../../components/molecules/MemoList';
+import ConfirmDialog from '../../components/organisms/ConfirmDialog';
 import { Shortcut } from '../../defines';
 
 interface MainPageProps {

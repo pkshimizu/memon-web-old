@@ -1,9 +1,9 @@
 import React from 'react';
-import SimpleTemplate from '../../templates/SimpleTemplate';
-import SiteLogo from '../../atoms/SiteLogo';
-import LoginForm from '../../organisms/LoginForm';
+import SimpleTemplate from '../../components/templates/SimpleTemplate';
+import SiteLogo from '../../components/atoms/SiteLogo';
+import LoginForm from '../../components/organisms/LoginForm';
 import { Grid } from '@material-ui/core';
-import SiteTitle from '../../atoms/SiteTitle';
+import SiteTitle from '../../components/atoms/SiteTitle';
 
 interface LoginPageProps {
   onClickLogin: (email: string, password: string) => void;

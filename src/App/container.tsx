@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../stores';
 import React, { useEffect } from 'react';
 import App from './index';
-import PageLoading from '../molecules/PageLoading';
+import PageLoading from '../components/molecules/PageLoading';
 import { loadUser } from '../stores/Users/actions';
 
 const AppContainer: React.FC = () => {

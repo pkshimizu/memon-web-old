@@ -4,7 +4,7 @@ import 'ace-builds/src-noconflict/mode-markdown';
 import 'ace-builds/src-noconflict/theme-textmate';
 import 'ace-builds/src-noconflict/keybinding-vim';
 import 'ace-builds/src-noconflict/keybinding-emacs';
-import { Shortcut } from '../../defines';
+import { Shortcut } from '../../../defines';
 
 interface MarkdownEditorProps {
   content: string;
