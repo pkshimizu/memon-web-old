@@ -5,7 +5,6 @@ import { RootState } from '../../stores';
 import { useDispatch, useSelector } from 'react-redux';
 import { createMemo, deleteMemo, loadMemos, saveMemo, selectMemo } from '../../stores/Memos/actions';
 import { User } from 'firebase';
-import { Redirect } from 'react-router';
 import { logout } from '../../stores/Users/actions';
 import { Shortcut } from '../../defines';
 
@@ -58,10 +57,6 @@ const MainPageContainer: React.FC = () => {
       handler: onClickAddMemo,
     },
   ];
-
-  if (user === undefined) {
-    return <Redirect to={'/login'} />;
-  }
 
   return (
     <MainPage
