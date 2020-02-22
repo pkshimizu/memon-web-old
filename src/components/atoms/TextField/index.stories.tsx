@@ -9,8 +9,8 @@ const components = storiesOf('Atoms', module);
 components.addDecorator(withKnobs).add('TextField', () => {
   const [value, updateValue] = useState('');
   return (
-    <div>
-      <TextField label={'Sample'} value={value} onChange={val => updateValue(val)}/>
-    </div>
+    <>
+      <TextField label={'Sample'} value={value} onChange={val => updateValue(val)} />
+    </>
   );
 });

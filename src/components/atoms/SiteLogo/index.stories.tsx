@@ -5,7 +5,7 @@ import SiteLogo from './index';
 
 const components = storiesOf('Atoms', module);
 components.addDecorator(withKnobs).add('SiteLogo', () => (
-  <div>
+  <>
     <SiteLogo />
-  </div>
+  </>
 ));

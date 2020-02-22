@@ -1,8 +1,7 @@
-import React, { ReactNodeArray } from 'react';
+import React from 'react';
 import { List as MUList, ListSubheader as MUListSubheader } from '@material-ui/core';
 
 interface ListProps {
-  children: Element[] | ReactNodeArray;
   header?: string;
 }
 

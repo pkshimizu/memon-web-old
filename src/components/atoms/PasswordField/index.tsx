@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField as MUTextField } from '@material-ui/core'
+import { TextField as MUTextField } from '@material-ui/core';
 
 interface PasswordFieldProps {
   label: string;

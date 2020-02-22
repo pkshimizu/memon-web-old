@@ -5,7 +5,7 @@ import SiteTitle from './index';
 
 const components = storiesOf('Atoms', module);
 components.addDecorator(withKnobs).add('SiteTitle', () => (
-  <div>
+  <>
     <SiteTitle />
-  </div>
+  </>
 ));

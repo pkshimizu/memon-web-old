@@ -15,8 +15,8 @@ interface MarkdownEditorProps {
 }
 
 const MarkdownEditor: React.FC<MarkdownEditorProps> = props => {
-  const { content, keyBinding, onChangeContent, focus, shortcuts } = props;
-  const commands: ICommand[] = (shortcuts || []).map(shortcut => ({
+  const { content, keyBinding, onChangeContent, focus, shortcuts = [] } = props;
+  const commands: ICommand[] = shortcuts.map(shortcut => ({
     name: shortcut.name,
     bindKey: { win: shortcut.key.replace('+', '-'), mac: shortcut.key.replace('+', '-') },
     exec: shortcut.handler,

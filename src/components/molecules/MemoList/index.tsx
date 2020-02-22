@@ -1,6 +1,6 @@
 import React from 'react';
 import List from '../../atoms/List';
-import ListItem from '../../atoms/List/item';
+import ListItem from '../../atoms/ListItem';
 import { Note } from '@material-ui/icons';
 import { Memo } from '../../../stores/Memos/types';
 
