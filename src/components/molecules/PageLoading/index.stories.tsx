@@ -5,7 +5,7 @@ import PageLoading from './index';
 
 const components = storiesOf('molecules', module);
 components.addDecorator(withKnobs).add('PageLoading', () => (
-  <div>
+  <>
     <PageLoading />
-  </div>
+  </>
 ));

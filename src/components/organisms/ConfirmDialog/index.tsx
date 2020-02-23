@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
-import Button from '../../atoms/Button';
+import Button, {Color} from '../../atoms/Button';
 
 interface ConfirmDialogProps {
   open: boolean;
@@ -26,7 +26,7 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = props => {
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={onSubmit} color={'primary'}>
+        <Button onClick={onSubmit} color={Color.PRIMARY}>
           {submitLabel}
         </Button>
       </DialogActions>

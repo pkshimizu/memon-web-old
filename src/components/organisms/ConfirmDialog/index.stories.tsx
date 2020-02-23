@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 
 const components = storiesOf('organisms', module);
 components.addDecorator(withKnobs).add('ConfirmDialog', () => (
-  <div>
+  <>
     <ConfirmDialog
       open={true}
       onClose={action('call onClose')}
@@ -15,5 +15,5 @@ components.addDecorator(withKnobs).add('ConfirmDialog', () => (
       submitLabel={'submit'}
       onSubmit={action('call onSubmit')}
     />
-  </div>
+  </>
 ));
